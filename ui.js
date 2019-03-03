@@ -23,6 +23,9 @@ class UI {
                
                 <img class="img-fluid img-thumbnail" src="${show.imgURL}" alt="">
                 <figcaption class="figure-caption">${show.title}</figcaption>
+                <figcaption class="figure-caption"> ${show.theater}</figcaption>
+                <figcaption class="figure-caption"> ${show.start}</figcaption>
+               
               </a>
             </div>
 

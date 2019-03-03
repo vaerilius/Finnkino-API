@@ -42,13 +42,18 @@ dropdownMenu.addEventListener("change", () => {
     const testi = [];
 
     for (let index = 0; index < shows.length; index++) {
-      // console.log(shows[index]);
-      const imgURL = shows[index].querySelector("EventLargeImagePortrait")
-        .innerHTML;
+      console.log(shows[index]);
+      const imgURL = shows[index].querySelector("EventLargeImagePortrait").innerHTML;
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
-      // const imgURL = shows[index].querySelector("EventLargeImagePortrait").innerHTML;
 
-      testi.push({ imgURL: imgURL, title: title });
+      const theater = shows[index].querySelector("TheatreAndAuditorium").innerHTML;
+      const time = shows[index].querySelector("dttmShowStart").innerHTML;
+     
+     
+
+    
+
+      testi.push({ imgURL: imgURL, title: title, theater: theater, start: time });
     }
 
     ui.showImages(testi);
