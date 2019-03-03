@@ -1,9 +1,11 @@
 class Movie {
   constructor() {
     this.cityDefaultID = '1033';
-    // this.day = new Date();
-    // // console.log(this.day);
-    // this.xml = new XMLHttpRequest();
+    this.day = new Date();
+   
+    this.daymodifed = `${this.day.getDate()}.${this.day.getMonth()}.${this.day.getFullYear()}`;
+    // console.log(this.daymodifed);
+   
   }
 
   async getAreas() {
@@ -24,7 +26,7 @@ class Movie {
   
   async getshows(cityId) {
     this.cityDefaultID = cityId;
-    const areaSchedule = await fetch(`https://www.finnkino.fi/xml/Schedule/?area=${this.cityDefaultID}&dt=03.03.2019`);
+    const areaSchedule = await fetch(`https://www.finnkino.fi/xml/Schedule/?area=${this.cityDefaultID}&dt=${this.daymodifed}`);
     const area = await areaSchedule.text();
   
     const schedule = new DOMParser().parseFromString(area, "text/xml");

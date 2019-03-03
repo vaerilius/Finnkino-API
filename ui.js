@@ -16,18 +16,27 @@ class UI {
 
       shows.forEach(show => {
         // console.log(show.imgURL);
-      
+      //put all into card 
         output += `
             <div class="col-lg-3 col-md-4 col-6">
               <a href="#" class="d-block mb-4 h-100">
                
                 <img class="img-fluid img-thumbnail" src="${show.imgURL}" alt="">
-                <figcaption class="figure-caption">${show.title}</figcaption>
-                <figcaption class="figure-caption"> ${show.theater}</figcaption>
-                <figcaption class="figure-caption"> ${show.start}</figcaption>
+
                
               </a>
             </div>
+
+
+            <div class="col-lg-3 col-md-4 col-6">
+            <ul class="list-group">
+            <li class="list-group-item">Company: ${show.title} </li>
+            <li class="list-group-item">Website/Blog: ${show.theater}</li>
+            <li class="list-group-item">Location: ${show.title} </li>
+            <li class="list-group-item">Member Since: ${show.start} </li>
+          </ul>
+            </div>
+
 
         `;
       });
