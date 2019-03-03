@@ -8,7 +8,8 @@
    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   <title>Finnkino API</title>
+  <link rel="stylesheet" href="finnkino.css">
+      <title>Finnkino API</title>
 </head>
 
 <body>
@@ -22,22 +23,25 @@
       <div class="row">
          <div class="card card-body search">
             <h1>Search Movies</h1>
-            <p class="lead">Enter Movie Name</p>
-            <div class="input-group">
-               <input type="text" class=" mr-2" class="form-control" aria-label="Text input with dropdown button" id="searchMovie">
-               <input type="button" class="btn btn-primary mr-2" value="Show all" id="showAll"> 
-               <div class="input-group-append ">
-                  <input class="btn btn-primary " type="button" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false" value="Theaters">
-                  <div class="dropdown-menu"></div>
+
+            <fieldset>
+               <legend>Enter Movie Name</legend>
+               <div class="form-group">
+                  <input type="text"  class="form-control" aria-label="Text input with dropdown button" id="searchMovie">
                </div>
-            </div>
+             </fieldset>
+            <fieldset>
+               <legend>Select Theather</legend>
+               <div class="form-group">
+                 <select class="custom-select">
+                   
+                 </select>
+               </div>
+             </fieldset>
             <br>    
                <ul id="output"></ul>
          </div>
-
       </div>
-
 
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

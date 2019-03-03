@@ -1,36 +1,73 @@
 const movie = new Movie();
+
 const ui = new UI();
 
-const showAll = $("#searchMovie");
-// const output = $('#ouput');
+const dropdownMenu = document.querySelector(".custom-select");
+const searchMovie = $("#searchMovie");
+const areaID = [];
 
-movie.getData().then(data => {
-  // console.log(data.schedule);
-  // console.log(data.areas);
+movie.getAreas().then(data => {
+  const theaters = data.querySelectorAll("Name");
 
-  const theaters = data.areas.querySelectorAll("Name");
+  const ids = data.querySelectorAll("ID");
 
-  const dropdownMenu = document.querySelector(".dropdown-menu");
-  console.log(dropdownMenu.value);
+  for (let index = 0; index < ids.length; index++) {
+    const id = ids[index].innerHTML;
+
+    areaID.push(id);
+  }
+
   theaters.forEach(element => {
-    const theater = document.createElement("a");
+    const theater = document.createElement("option");
     theater.className = "dropdown-item";
     theater.innerHTML = element.innerHTML;
     dropdownMenu.appendChild(theater);
-    // console.log(element);
+  });
+});
+let id = "";
+dropdownMenu.addEventListener("change", () => {
+  for (let index = 0; index < dropdownMenu.length; index++) {
+    if (
+      dropdownMenu[index].innerHTML ===
+      $(".form-group select.custom-select")
+        .children("option:selected")
+        .val()
+    ) {
+      movie.changeTheatreArea(areaID[index]);
+    }
+  }
+  console.log(movie);
+  movie.getshows(movie.cityDefaultID).then(data => {
+    const shows = data.querySelectorAll("Show");
+    const testi = [];
+
+    for (let index = 0; index < shows.length; index++) {
+      // console.log(shows[index]);
+      const imgURL = shows[index].querySelector("EventLargeImagePortrait")
+        .innerHTML;
+      const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
+      // const imgURL = shows[index].querySelector("EventLargeImagePortrait").innerHTML;
+
+      testi.push({ imgURL: imgURL, title: title });
+    }
+
+    ui.showImages(testi);
   });
 });
 
 //rebuild this => get data from selected theater and output data imgs to  the browser
-showAll.on("keyup", e => {
-  movie.getData().then(data => {
-    const shows = data.schedule.querySelectorAll("Show");
+searchMovie.on("keyup", e => {
+  movie.getshows(movie.cityDefaultID).then(data => {
+    const shows = data.querySelectorAll("Show");
     const testi = [];
 
     for (let index = 0; index < shows.length; index++) {
+      // console.log(shows[index]);
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
+      // const imgURL = shows[index].querySelector("EventLargeImagePortrait").innerHTML;
+
       let value = e.target.value.toUpperCase();
       if (title.includes(value)) {
         testi.push({ imgURL: imgURL, title: title });
