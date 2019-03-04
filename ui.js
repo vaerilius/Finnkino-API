@@ -3,9 +3,7 @@ class UI {
     this.output = document.querySelector("#output");
   }
 
-  showImages(shows) {
-
-
+  showMovies(shows) {
 
     let output = `
       
@@ -31,7 +29,7 @@ class UI {
         <li class="list-group-item">Title: ${show.title} </li>
         <li class="list-group-item">Theater: ${show.theater}</li>
         <li class="list-group-item">Start: ${show.start} </li>
-        <li class="list-group-item">   </li>
+        <li class="list-group-item">Length: ${show.lengthInMinutes} Minutes </li>
         </ul>
         </div>
       </div>

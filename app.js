@@ -50,16 +50,18 @@ dropdownMenu.addEventListener("change", () => {
       const theater = shows[index].querySelector("TheatreAndAuditorium")
         .innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
-
+      const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
+      
       object.push({
         imgURL: imgURL,
         title: title,
         theater: theater,
-        start: time
+        start: time,
+        lengthInMinutes: lengthInMinutes
       });
     }
 
-    ui.showImages(object);
+    ui.showMovies(object);
   });
 });
 
@@ -67,16 +69,18 @@ searchMovie.on("keyup", e => {
   movie.getshows(movie.cityDefaultID).then(data => {
     const shows = data.querySelectorAll("Show");
     const object = [];
-
+    console.log(data);
     for (let index = 0; index < shows.length; index++) {
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;
-
+      
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
 
       const theater = shows[index].querySelector("TheatreAndAuditorium")
         .innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
+      const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
+     
 
       let value = e.target.value.toUpperCase();
       if (title.includes(value)) {
@@ -85,11 +89,11 @@ searchMovie.on("keyup", e => {
           title: title,
           theater: theater,
           start: time,
-          imgVio: imgURLvio
+          lengthInMinutes: lengthInMinutes
         });
       }
     }
 
-    ui.showImages(object);
+    ui.showMovies(object);
   });
 });
