@@ -39,7 +39,7 @@ dropdownMenu.addEventListener("change", () => {
   // console.log(movie);
   movie.getshows(movie.cityDefaultID).then(data => {
     const shows = data.querySelectorAll("Show");
-    const testi = [];
+    const object = [];
 
     for (let index = 0; index < shows.length; index++) {
       console.log(shows[index]);
@@ -47,10 +47,11 @@ dropdownMenu.addEventListener("change", () => {
         .innerHTML;
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
 
-      const theater = shows[index].querySelector("TheatreAndAuditorium").innerHTML;
+      const theater = shows[index].querySelector("TheatreAndAuditorium")
+        .innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
 
-      testi.push({
+      object.push({
         imgURL: imgURL,
         title: title,
         theater: theater,
@@ -58,37 +59,37 @@ dropdownMenu.addEventListener("change", () => {
       });
     }
 
-    ui.showImages(testi);
+    ui.showImages(object);
   });
 });
 
-//rebuild this => get data from selected theater and output data imgs to  the browser
 searchMovie.on("keyup", e => {
   movie.getshows(movie.cityDefaultID).then(data => {
     const shows = data.querySelectorAll("Show");
-    const testi = [];
+    const object = [];
 
     for (let index = 0; index < shows.length; index++) {
-      // console.log(shows[index]);
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;
+
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
-      // const imgURL = shows[index].querySelector("EventLargeImagePortrait").innerHTML;
-      
-      const theater = shows[index].querySelector("TheatreAndAuditorium").innerHTML;
+
+      const theater = shows[index].querySelector("TheatreAndAuditorium")
+        .innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
 
       let value = e.target.value.toUpperCase();
       if (title.includes(value)) {
-        testi.push({
+        object.push({
           imgURL: imgURL,
           title: title,
           theater: theater,
-          start: time
+          start: time,
+          imgVio: imgURLvio
         });
       }
     }
 
-    ui.showImages(testi);
+    ui.showImages(object);
   });
 });
