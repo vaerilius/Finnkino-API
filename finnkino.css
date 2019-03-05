@@ -7,6 +7,11 @@ body {
  }
 
 img {
-  width: 200px;
+  width: 150px;
   height: auto;
+ 
+}
+
+.form-group{
+  background: aquamarine;
 }

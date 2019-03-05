@@ -23,7 +23,7 @@ class UI {
    
           
         </div>
-
+      
         <div class="col-md-9">
         <ul class="list-group">
         <li class="list-group-item">Title: ${show.title} </li>
