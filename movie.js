@@ -1,6 +1,6 @@
 class Movie {
   constructor() {
-    this.cityDefaultID = "1033";
+    this.cityDefaultID = "1014";
     this.dayRaw = new Date();
     this.day = `${this.dayRaw.getDate()}.${this.dayRaw.getMonth()}.${this.dayRaw.getFullYear()}`;
   }
