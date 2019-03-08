@@ -24,7 +24,7 @@ movie.getAreas().then(data => {
   });
 });
 
-let id = "";
+
 dropdownMenu.addEventListener("change", () => {
   for (let index = 0; index < dropdownMenu.length; index++) {
     if (
@@ -36,19 +36,20 @@ dropdownMenu.addEventListener("change", () => {
       movie.changeTheatreArea(areaID[index]);
     }
   }
+
+  
   // console.log(movie);
   movie.getshows(movie.cityDefaultID).then(data => {
     const shows = data.querySelectorAll("Show");
     const object = [];
 
     for (let index = 0; index < shows.length; index++) {
-      console.log(shows[index]);
+      // console.log(shows[index]);
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
 
-      const theater = shows[index].querySelector("TheatreAndAuditorium")
-        .innerHTML;
+      const theater = shows[index].querySelector("TheatreAndAuditorium").innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
       const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
       
@@ -69,7 +70,7 @@ searchMovie.on("keyup", e => {
   movie.getshows(movie.cityDefaultID).then(data => {
     const shows = data.querySelectorAll("Show");
     const object = [];
-    console.log(data);
+    // console.log(data);
     for (let index = 0; index < shows.length; index++) {
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;

@@ -11,6 +11,8 @@ class Movie {
     );
 
     const areas = await areaResponse.text();
+
+  
     return new DOMParser().parseFromString(areas, "text/xml");
   }
 
