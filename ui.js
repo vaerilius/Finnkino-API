@@ -4,7 +4,7 @@ class UI {
   }
   showMovies(shows) {
     let output = `
-      <h1 class="display-5 text-uppercase font-weight-bold text-center">Finnkino Movies</h1>
+      <h1 class="display-5 text-uppercase font-weight-bold text-center pt-3">Finnkino Movies</h1>
           <hr>
           <div class="card-group">
       `;
