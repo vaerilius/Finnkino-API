@@ -1,5 +1,4 @@
 const movie = new Movie();
-
 const ui = new UI();
 
 const dropdownMenu = document.querySelector(".custom-select");
@@ -24,7 +23,6 @@ movie.getAreas().then(data => {
   });
 });
 
-
 dropdownMenu.addEventListener("change", () => {
   for (let index = 0; index < dropdownMenu.length; index++) {
     if (
@@ -37,28 +35,28 @@ dropdownMenu.addEventListener("change", () => {
     }
   }
 
-  
-  // console.log(movie);
   movie.getshows(movie.cityDefaultID).then(data => {
     const shows = data.querySelectorAll("Show");
     const object = [];
 
     for (let index = 0; index < shows.length; index++) {
-      // console.log(shows[index]);
+
+
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
-
+      const originalTitle = shows[index].querySelector("OriginalTitle").innerHTML;
       const theater = shows[index].querySelector("TheatreAndAuditorium").innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
       const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
-      
+
       object.push({
         imgURL: imgURL,
         title: title,
         theater: theater,
         start: time,
-        lengthInMinutes: lengthInMinutes
+        lengthInMinutes: lengthInMinutes,
+        originalTitle: originalTitle
       });
     }
 
@@ -74,14 +72,13 @@ searchMovie.on("keyup", e => {
     for (let index = 0; index < shows.length; index++) {
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;
-      
-      const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
 
+      const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
+      const originalTitle = shows[index].querySelector("OriginalTitle").innerHTML;
       const theater = shows[index].querySelector("TheatreAndAuditorium")
         .innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
       const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
-     
 
       let value = e.target.value.toUpperCase();
       if (title.includes(value)) {
@@ -90,7 +87,8 @@ searchMovie.on("keyup", e => {
           title: title,
           theater: theater,
           start: time,
-          lengthInMinutes: lengthInMinutes
+          lengthInMinutes: lengthInMinutes,
+          originalTitle: originalTitle
         });
       }
     }
