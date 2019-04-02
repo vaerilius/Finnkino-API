@@ -22,10 +22,7 @@ class Movie {
 
   async getshows(cityId) {
     this.cityDefaultID = cityId;
-    const shows = await fetch(
-      `https://www.finnkino.fi/xml/Schedule/?area=${this.cityDefaultID}&dt=${
-        this.day
-      }`
+    const shows = await fetch(`https://www.finnkino.fi/xml/Schedule/?area=${this.cityDefaultID}&dt=${this.day}`
     );
 
     const area = await shows.text();

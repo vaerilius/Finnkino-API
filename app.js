@@ -24,13 +24,10 @@ movie.getAreas().then(data => {
 });
 
 dropdownMenu.addEventListener("change", () => {
+  ui.clearInput();
+  let selectedTheater = $(".form-group select.custom-select").children("option:selected").val();
   for (let index = 0; index < dropdownMenu.length; index++) {
-    if (
-      dropdownMenu[index].innerHTML ===
-      $(".form-group select.custom-select")
-        .children("option:selected")
-        .val()
-    ) {
+    if (dropdownMenu[index].innerHTML === selectedTheater) {
       movie.changeTheatreArea(areaID[index]);
     }
   }
@@ -40,8 +37,6 @@ dropdownMenu.addEventListener("change", () => {
     const object = [];
 
     for (let index = 0; index < shows.length; index++) {
-
-
       const imgURL = shows[index].querySelector("EventLargeImagePortrait")
         .innerHTML;
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
@@ -61,38 +56,48 @@ dropdownMenu.addEventListener("change", () => {
     }
 
     ui.showMovies(object);
+    searchMovie.innerHTML = '';
   });
 });
 
 searchMovie.on("keyup", e => {
-  movie.getshows(movie.cityDefaultID).then(data => {
-    const shows = data.querySelectorAll("Show");
-    const object = [];
-    // console.log(data);
-    for (let index = 0; index < shows.length; index++) {
-      const imgURL = shows[index].querySelector("EventLargeImagePortrait")
-        .innerHTML;
+  if (e.target.value !== '') {
+    movie.getshows(movie.cityDefaultID).then(data => {
 
-      const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
-      const originalTitle = shows[index].querySelector("OriginalTitle").innerHTML;
-      const theater = shows[index].querySelector("TheatreAndAuditorium")
-        .innerHTML;
-      const time = shows[index].querySelector("dttmShowStart").innerHTML;
-      const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
+      const shows = data.querySelectorAll("Show");
+      const object = [];
 
-      let value = e.target.value.toUpperCase();
-      if (title.includes(value)) {
-        object.push({
-          imgURL: imgURL,
-          title: title,
-          theater: theater,
-          start: time,
-          lengthInMinutes: lengthInMinutes,
-          originalTitle: originalTitle
-        });
+      for (let index = 0; index < shows.length; index++) {
+        const imgURL = shows[index].querySelector("EventLargeImagePortrait")
+          .innerHTML;
+
+        const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
+        const originalTitle = shows[index].querySelector("OriginalTitle").innerHTML;
+        const theater = shows[index].querySelector("TheatreAndAuditorium")
+          .innerHTML;
+        const time = shows[index].querySelector("dttmShowStart").innerHTML;
+        const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
+
+        let value = e.target.value.toUpperCase();
+        if (title.includes(value)) {
+          object.push({
+            imgURL: imgURL,
+            title: title,
+            theater: theater,
+            start: time,
+            lengthInMinutes: lengthInMinutes,
+            originalTitle: originalTitle
+          });
+        }
       }
-    }
+      if (e.which === 13) {
+        ui.showMovies(object);
+        ui.clearInput();
+      }
+    });
 
-    ui.showMovies(object);
-  });
+  } else {
+    ui.clearShows();
+  }
+
 });

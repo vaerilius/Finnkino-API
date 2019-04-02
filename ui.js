@@ -1,6 +1,8 @@
 class UI {
   constructor() {
     this.output = document.querySelector("#output");
+    this.input = $('#searchMovie');
+    
   }
   showMovies(shows) {
     let output = `
@@ -13,7 +15,8 @@ class UI {
       output += `
        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 px-md-3 bg-transparent ">
         <div class="card mx-auto p-3 pb-4 bg-transparent border-0" style="width: 17rem;">
-        <div class="card-title mx-auto text-center bg-white border border-dark rounded p-2"><h4 class="display-5">${show.originalTitle}</h4>
+        <div class="card-title mx-auto text-center bg-white border border-dark rounded p-2"><h5 class="display-5">${show.title}</h5>
+       
           <img class="card-img-top rounded" src="${show.imgURL}" >
           <div class="card-body">
             <ul class="list-group list-group-flush">
@@ -31,6 +34,14 @@ class UI {
     output += `
     </div>
     `;
-    this.output.innerHTML = output;
+      this.output.innerHTML = output;
+  }
+  clearShows() {
+    this.output.innerHTML = '';
+  }
+  clearInput() {
+    $(this.input).val('');
+    console.log(this.input);
+    this.input.innerHTML = '';
   }
 }
