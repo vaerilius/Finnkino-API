@@ -23,6 +23,8 @@ class UI {
               <li class="list-group-item rounded"><h5 class="display-5">${show.theater}</h5></li>
               <li class="list-group-item rounded">${show.start}</li>
               <li class="list-group-item rounded">${show.lengthInMinutes} Minutes</li>
+              <li class="list-group-item rounded"><a href="${show.url}" class="card-link">Buy</a> </li>
+
             </ul>
             </div>
           </div>
@@ -41,7 +43,6 @@ class UI {
   }
   clearInput() {
     $(this.input).val('');
-    console.log(this.input);
     this.input.innerHTML = '';
   }
 }

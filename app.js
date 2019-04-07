@@ -5,6 +5,7 @@ const dropdownMenu = document.querySelector(".custom-select");
 const searchMovie = $("#searchMovie");
 const areaID = [];
 
+
 movie.getAreas().then(data => {
   const theaters = data.querySelectorAll("Name");
   const ids = data.querySelectorAll("ID");
@@ -44,17 +45,18 @@ dropdownMenu.addEventListener("change", () => {
       const theater = shows[index].querySelector("TheatreAndAuditorium").innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
       const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
-
+      const showUrl =shows[index].querySelector("ShowURL").innerHTML;
+     
       object.push({
         imgURL: imgURL,
         title: title,
         theater: theater,
         start: time,
         lengthInMinutes: lengthInMinutes,
-        originalTitle: originalTitle
+        originalTitle: originalTitle,
+        url : showUrl
       });
     }
-
     ui.showMovies(object);
     searchMovie.innerHTML = '';
   });
@@ -77,6 +79,7 @@ searchMovie.on("keyup", e => {
           .innerHTML;
         const time = shows[index].querySelector("dttmShowStart").innerHTML;
         const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
+        const showUrl =shows[index].querySelector("ShowURL").innerHTML;
 
         let value = e.target.value.toUpperCase();
         if (title.includes(value)) {
@@ -86,7 +89,8 @@ searchMovie.on("keyup", e => {
             theater: theater,
             start: time,
             lengthInMinutes: lengthInMinutes,
-            originalTitle: originalTitle
+            originalTitle: originalTitle,
+            url: showUrl
           });
         }
       }
