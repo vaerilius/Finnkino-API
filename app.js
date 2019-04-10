@@ -46,7 +46,7 @@ dropdownMenu.addEventListener("change", () => {
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
       const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
       const showUrl =shows[index].querySelector("ShowURL").innerHTML;
-     
+      const ratingUrl = shows[index].querySelector('RatingImageUrl').innerHTML;
       object.push({
         imgURL: imgURL,
         title: title,
@@ -54,7 +54,8 @@ dropdownMenu.addEventListener("change", () => {
         start: time,
         lengthInMinutes: lengthInMinutes,
         originalTitle: originalTitle,
-        url : showUrl
+        url : showUrl,
+        ratingUrl: ratingUrl
       });
     }
     ui.showMovies(object);
@@ -78,11 +79,20 @@ searchMovie.on("keyup", e => {
         const theater = shows[index].querySelector("TheatreAndAuditorium")
           .innerHTML;
         const time = shows[index].querySelector("dttmShowStart").innerHTML;
+        const showStart = new Date(time);
         const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
         const showUrl =shows[index].querySelector("ShowURL").innerHTML;
-
+        const ratingUrl = shows[index].querySelector('RatingImageUrl').innerHTML;
+        console.log(ratingUrl);
         let value = e.target.value.toUpperCase();
-        if (title.includes(value)) {
+
+        let timeNow = new Date();
+        console.log(showStart.getHours());
+     
+
+        console.log(timeNow.getHours());
+
+        if (title.includes(value) && showStart >= timeNow + 1) {
           object.push({
             imgURL: imgURL,
             title: title,
@@ -90,7 +100,8 @@ searchMovie.on("keyup", e => {
             start: time,
             lengthInMinutes: lengthInMinutes,
             originalTitle: originalTitle,
-            url: showUrl
+            url: showUrl,
+            ratingUrl: ratingUrl
           });
         }
       }

@@ -54,28 +54,33 @@ class UI {
       output += `
  
       <tbody>
-        <tr>
-          <th scope="row"> <img class="card-img-top rounded" src="${show.imgURL}" ></th>
+        <tr class="shadow-lg p-3 mb-5 rounded">
+          <th scope="row"> <img class=" rounded" src="${show.imgURL}" style="width: 14rem;"></th>
+          <th scope="row"> <img src="${show.ratingUrl}" ></th>
           <td>
-                   <ul class="list-group list-group-flush ">
-                   <li class=""><h5 class="display-5 ">${show.originalTitle}</h5></li>
-                     <li ><h5 class="flex-md-display-5">${show.theater}</h5></li>
-                      <li  class="text-danger">${show.start}</li>
-                     <li class="text-white font-weight-bold">${show.lengthInMinutes} Minutes</li>
-                     <li ><a href="${show.url}" class="card-link bg-rimary">Buy</a> </li>
-        
+                   <ul class="list-group list-group-flush m-2 p-2 bg-transparent ">
+                  
+                   <li class="text-white list-group-item bg-transparent table-responsive text-lg-2"><a class="font-weight-bold">Title: </a> ${show.originalTitle}</li>
+                   <li class="text-white list-group-item bg-transparent"><a class="font-weight-bold">Theather:</a> ${show.theater}</li>
+                   <li class="text-white list-group-item bg-transparent"><a class="font-weight-bold">Start:</a> ${show.start}</li>
+                   <li class="text-white list-group-item bg-transparent"><a class="font-weight-bold">Length: </a> ${show.lengthInMinutes}</li>
+                   <li class="text-white list-group-item bg-transparent">  <p class="lead">
+                   <a class="btn btn-primary btn-lg" href="${show.url}" role="button">Buy Now!</a>
+                 </p></li>
+     
                    </ul>
           </td>
         </tr>
+        </tbody>
         `;
     });
 
 
 
-    output += `
-    </tbody>
+    // output += `
+    // </tbody>
    
-    `;
+    // `;
     this.output.innerHTML = output;
   }
 
