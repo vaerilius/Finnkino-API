@@ -5,7 +5,6 @@ const dropdownMenu = document.querySelector(".custom-select");
 const searchMovie = $("#searchMovie");
 const areaID = [];
 
-
 movie.getAreas().then(data => {
   const theaters = data.querySelectorAll("Name");
   const ids = data.querySelectorAll("ID");
@@ -15,7 +14,6 @@ movie.getAreas().then(data => {
 
     areaID.push(id);
   }
-
   theaters.forEach(element => {
     const theater = document.createElement("option");
     theater.className = "dropdown-item";
@@ -38,25 +36,35 @@ dropdownMenu.addEventListener("change", () => {
     const object = [];
 
     for (let index = 0; index < shows.length; index++) {
-      const imgURL = shows[index].querySelector("EventLargeImagePortrait")
+      const imgURL = shows[index].querySelector("EventLargeImageLandscape")
+        .innerHTML;
+        const imgURLSmall = shows[index].querySelector("EventSmallImagePortrait")
         .innerHTML;
       const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
       const originalTitle = shows[index].querySelector("OriginalTitle").innerHTML;
       const theater = shows[index].querySelector("TheatreAndAuditorium").innerHTML;
       const time = shows[index].querySelector("dttmShowStart").innerHTML;
+      const showStart = new Date(time);
       const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
       const showUrl =shows[index].querySelector("ShowURL").innerHTML;
       const ratingUrl = shows[index].querySelector('RatingImageUrl').innerHTML;
-      object.push({
-        imgURL: imgURL,
-        title: title,
-        theater: theater,
-        start: time,
-        lengthInMinutes: lengthInMinutes,
-        originalTitle: originalTitle,
-        url : showUrl,
-        ratingUrl: ratingUrl
-      });
+      const genres = shows[index].querySelector('Genres').innerHTML;
+     
+      let timeNow = new Date();
+      if (showStart >= timeNow) {
+        object.push({
+          imgURL: imgURL,
+          imgSmall: imgURLSmall,
+          title: title,
+          theater: theater,
+          start: showStart,
+          lengthInMinutes: lengthInMinutes,
+          originalTitle: originalTitle,
+          url : showUrl,
+          ratingUrl: ratingUrl,
+          genre: genres 
+        });
+      }
     }
     ui.showMovies(object);
     searchMovie.innerHTML = '';
@@ -71,9 +79,10 @@ searchMovie.on("keyup", e => {
       const object = [];
 
       for (let index = 0; index < shows.length; index++) {
-        const imgURL = shows[index].querySelector("EventLargeImagePortrait")
-          .innerHTML;
-
+        const imgURL = shows[index].querySelector("EventLargeImageLandscape")
+        .innerHTML;
+        const imgURLSmall = shows[index].querySelector("EventSmallImagePortrait")
+        .innerHTML;
         const title = shows[index].querySelector("Title").innerHTML.toUpperCase();
         const originalTitle = shows[index].querySelector("OriginalTitle").innerHTML;
         const theater = shows[index].querySelector("TheatreAndAuditorium")
@@ -82,26 +91,24 @@ searchMovie.on("keyup", e => {
         const showStart = new Date(time);
         const lengthInMinutes = shows[index].querySelector("LengthInMinutes").innerHTML;
         const showUrl =shows[index].querySelector("ShowURL").innerHTML;
+        const genres = shows[index].querySelector('Genres').innerHTML;
         const ratingUrl = shows[index].querySelector('RatingImageUrl').innerHTML;
-        console.log(ratingUrl);
+
         let value = e.target.value.toUpperCase();
-
         let timeNow = new Date();
-        console.log(showStart.getHours());
      
-
-        console.log(timeNow.getHours());
-
-        if (title.includes(value) && showStart >= timeNow + 1) {
+        if (title.includes(value) && showStart >= timeNow) {
           object.push({
             imgURL: imgURL,
+            imgSmall: imgURLSmall,
             title: title,
             theater: theater,
-            start: time,
+            start: showStart,
             lengthInMinutes: lengthInMinutes,
             originalTitle: originalTitle,
             url: showUrl,
-            ratingUrl: ratingUrl
+            ratingUrl: ratingUrl,
+            genre: genres 
           });
         }
       }
@@ -117,6 +124,6 @@ searchMovie.on("keyup", e => {
 
 });
 
-// $( 'card' ).click(function() {
-//   $( "li" ).toggle( "slow", 1000 );
-// });
+$( 'table' ).click(function() {
+  $( ".info" ).toggle( "slow", 1000 );
+});
