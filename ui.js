@@ -10,7 +10,7 @@ class UI {
     $(this.input).val('');
   }
   showMovies(shows) {
-    let output = ` `;
+    let output = ` <h3>Click picture and get info</h3> `;
     let sum = 0;
     shows.forEach(show=> {
      sum++;
