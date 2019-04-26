@@ -115,14 +115,13 @@ searchMovie.on("keyup", e => {
     ui.clearShows();
   }
 });
-$( document.body ).on('click',function(e) {
 
-  $( '#output' ).find('th').on('click',function(e) {
-    console.log(this);
-    $( this ).find('.info').slideToggle( 750);
+$('#output').click(function() {
+  $(this).find('th').on('click', function(e) {
+    $( this ).find('.info').fadeToggle(1000);
     e.stopPropagation();
-  });
-  e.stopPropagation();
+  })
+  
 });
 
 $('#day').on('change', function() {
