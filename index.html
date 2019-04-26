@@ -9,8 +9,15 @@
    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   <link rel="stylesheet" href="finnkino.css">
    <title>Finnkino API</title>
+   <style>
+      body {
+         font-family: 'Roboto';
+         background: #000046;
+         background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+         background: linear-gradient(to right, #1CB5E0, #000046);
+      }
+   </style>
 </head>
 
 <body>
@@ -18,32 +25,50 @@
       <h1 class="text-light display-5 text-uppercase py-2 font-weight-bold">Finnkino API</h1>
    </nav>
    <div class="container mx-auto ">
-      <div class="row">
+      <div class="row ">
          <div class="card card-body ">
-            <fieldset>
-               <legend>Search by Movie Name</legend>
-               <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Type the letters that the movie contains"
-                     aria-label="text input with dropdown button" id="searchMovie">
+            <div class="row">
+               <div class="col">
+                  <fieldset>
+                     <p class="lead">Search Movies</p>
+                     <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Movie Name"
+                           aria-label="text input with dropdown button" id="searchMovie">
+                     </div>
+                  </fieldset>
                </div>
-            </fieldset>
-            <fieldset>
-               <legend>Select Theather</legend>
-               <div class="form-group ">
-                  <select class="custom-select">
+               <div class="col">
+                  <fieldset>
+                     <p class="lead">Select Theater</p>
+                     <div class="form-group ">
+                        <select class="custom-select">
+                        </select>
+                     </div>
+                  </fieldset>
+               </div>
+               <div class="col">
+                  <p class="lead">Select day</p>
+                  <select class="form-control" id="day">
+                     <option>This day</option>
+                     <option>+1</option>
+                     <option>+2</option>
+                     <option>+3</option>
                   </select>
                </div>
-            </fieldset>
+            </div>
          </div>
       </div>
+
       <div class="table-responsive ">
-         <table class="table shadow rounded" id="output">
+         <table class="table shadow rounded " id="output">
+            <br>
          </table>
       </div>
    </div>
-   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
+   <script
+   src="https://code.jquery.com/jquery-3.4.0.js"
+   integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+   crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
       crossorigin="anonymous"></script>

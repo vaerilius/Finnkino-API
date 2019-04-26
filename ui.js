@@ -2,32 +2,26 @@ class UI {
   constructor() {
     this.output = document.querySelector("#output");
     this.input = $('#searchMovie');
-
   }
   clearShows() {
     this.output.innerHTML = '';
   }
   clearInput() {
     $(this.input).val('');
-    this.input.innerHTML = '';
   }
   showMovies(shows) {
     let output = ` `;
-
-    shows.forEach(show => {
+    let sum = 0;
+    shows.forEach(show=> {
+     sum++;
       output += `
-    
-      <div class="row">
-        <th>
-          <div class="col-ms-12 col-md-6 col-lg-4 mt-3" >
-            <img class=" rounded" src="${show.imgURL}" style="width: 25rem;">
-            <h4 class="card-title text-white font-weight-bold mt-2" > ${show.originalTitle}</h4>
-          </div>
-          <div class="col-ms-12 col-md-6 col-lg-4">
-            <div class="card info bg-transparent " style="width: 25rem; display:none;">
+      <div class="row pt-3">
+        <th id="${sum }">
+          <img class=" rounded" src="${show.imgURL}" style="width: 33rem;">
+          <h4 class="card-title text-center text-white font-weight-bold mt-2" > ${show.originalTitle}</h4>
+            <div class="card info bg-transparent " style="width: 33rem; display:none;">
               <div class="card-body ">
-                <h5 class=" text-white-50 " >${show.genre} </h5>
-                <img  src="${show.ratingUrl}"  class="card-img-top" style="width: 3rem;>
+                <h5 class=" text-white-50 " >${show.genre}   <img  src="${show.ratingUrl}"  class="card-img-top m-1" style="width: 2rem;></h5>
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item text-white bg-transparent">Theather:</a> ${show.theater}</li>
@@ -36,11 +30,9 @@ class UI {
                 <li class="list-group-item text-white bg-transparent text-center mx-auto"><p>Buy now!</p> <br><a href="${show.url}"> <img class="" src="${show.imgSmall}"  style="width: 10rem;></a></li>
              </ul>
           </div>
-        </div>
       </div>
         `;
     });
-
     this.output.innerHTML = output;
   }
 }
